@@ -17,12 +17,9 @@
       background-color: #A0522D;
     }
     .sidebar-toggle {
-      display: none;
+      display: block;
     }
     @media (max-width: 768px) {
-      .sidebar-toggle {
-        display: block;
-      }
       .sidebar {
         transform: translateX(-100%);
         transition: transform 0.3s ease-in-out;
@@ -31,14 +28,29 @@
         transform: translateX(0);
       }
     }
+    @media (min-width: 769px) {
+      .sidebar {
+        transition: transform 0.3s ease-in-out;
+      }
+      .sidebar.hidden {
+        transform: translateX(-100%);
+      }
+      .content-expanded {
+        margin-left: 0 !important;
+        transition: margin-left 0.3s ease-in-out;
+      }
+    }
   </style>
 </head>
 <body class="bg-blue-50 text-gray-900">
 
-  <!-- Mobile menu button -->
-  <button id="sidebarToggle" class="sidebar-toggle fixed top-4 left-4 z-50 bg-yellow-300 text-brown-900 p-2 rounded-lg shadow-lg md:hidden">
-    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <!-- Sidebar toggle button (visible on all devices) -->
+  <button id="sidebarToggle" class="fixed top-4 left-4 z-50 bg-yellow-300 text-brown-900 p-3 rounded-lg shadow-lg hover:bg-yellow-400 transition-colors duration-200">
+    <svg id="menuIcon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+    </svg>
+    <svg id="closeIcon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
     </svg>
   </button>
 
@@ -82,7 +94,7 @@
   </nav>
 
   <!-- Main content wrapper -->
-  <div class="md:ml-64">
+  <div id="mainContent" class="md:ml-64 transition-all duration-300">
     <!-- Header -->
     <header class="bg-green-700 text-white text-center py-20 shadow-2xl">
       <h1 class="text-6xl font-extrabold">Ayurvedic Medicines & Remedies</h1>
@@ -178,18 +190,50 @@
   </div>
 
   <script>
-    // Mobile sidebar toggle functionality
+    // Sidebar toggle functionality for all devices
     const sidebarToggle = document.getElementById('sidebarToggle');
     const sidebar = document.getElementById('sidebar');
+    const mainContent = document.getElementById('mainContent');
+    const menuIcon = document.getElementById('menuIcon');
+    const closeIcon = document.getElementById('closeIcon');
+    
+    let sidebarVisible = true;
 
     sidebarToggle.addEventListener('click', () => {
-      sidebar.classList.toggle('open');
+      if (window.innerWidth <= 768) {
+        // Mobile behavior
+        sidebar.classList.toggle('open');
+        toggleIcons();
+      } else {
+        // Desktop behavior
+        sidebarVisible = !sidebarVisible;
+        if (sidebarVisible) {
+          sidebar.classList.remove('hidden');
+          mainContent.classList.remove('content-expanded');
+        } else {
+          sidebar.classList.add('hidden');
+          mainContent.classList.add('content-expanded');
+        }
+        toggleIcons();
+      }
     });
+
+    function toggleIcons() {
+      if ((window.innerWidth <= 768 && sidebar.classList.contains('open')) || 
+          (window.innerWidth > 768 && sidebarVisible)) {
+        menuIcon.classList.add('hidden');
+        closeIcon.classList.remove('hidden');
+      } else {
+        menuIcon.classList.remove('hidden');
+        closeIcon.classList.add('hidden');
+      }
+    }
 
     // Close sidebar when clicking on main content on mobile
     document.addEventListener('click', (e) => {
       if (window.innerWidth <= 768 && !sidebar.contains(e.target) && !sidebarToggle.contains(e.target)) {
         sidebar.classList.remove('open');
+        toggleIcons();
       }
     });
 
@@ -199,8 +243,25 @@
       link.addEventListener('click', () => {
         if (window.innerWidth <= 768) {
           sidebar.classList.remove('open');
+          toggleIcons();
         }
       });
+    });
+
+    // Handle window resize to reset states
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768) {
+        sidebar.classList.remove('open');
+        if (sidebarVisible) {
+          sidebar.classList.remove('hidden');
+          mainContent.classList.remove('content-expanded');
+        }
+      } else {
+        sidebar.classList.remove('hidden');
+        mainContent.classList.remove('content-expanded');
+        sidebarVisible = true;
+      }
+      toggleIcons();
     });
   </script>
 
