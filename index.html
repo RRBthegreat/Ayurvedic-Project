@@ -12,6 +12,7 @@
     }
     body {
       font-family: 'Quicksand', sans-serif;
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
     .bg-brown {
       background-color: #A0522D;
@@ -40,6 +41,86 @@
         transition: margin-left 0.3s ease-in-out;
       }
     }
+    
+    /* Dark theme styles */
+    .dark {
+      background-color: #1a1a1a;
+      color: #e5e5e5;
+    }
+    
+    .dark .bg-blue-50 {
+      background-color: #1a1a1a;
+    }
+    
+    .dark .bg-green-700 {
+      background-color: #166534;
+    }
+    
+    .dark .bg-yellow-300 {
+      background-color: #ca8a04;
+    }
+    
+    .dark .bg-yellow-100 {
+      background-color: #292524;
+      border-color: #ca8a04;
+    }
+    
+    .dark .bg-green-100 {
+      background-color: #1c2e1c;
+      border-color: #166534;
+    }
+    
+    .dark .bg-blue-100 {
+      background-color: #1e293b;
+      border-color: #1e40af;
+    }
+    
+    .dark .bg-white {
+      background-color: #374151;
+      color: #e5e5e5;
+    }
+    
+    .dark .bg-brown {
+      background-color: #7c2d12;
+    }
+    
+    .dark .bg-green-800 {
+      background-color: #14532d;
+    }
+    
+    .dark .text-gray-900 {
+      color: #e5e5e5;
+    }
+    
+    .dark .text-yellow-800 {
+      color: #fbbf24;
+    }
+    
+    .dark .text-green-900 {
+      color: #86efac;
+    }
+    
+    .dark .text-blue-900 {
+      color: #93c5fd;
+    }
+    
+    .dark .text-blue-700 {
+      color: #60a5fa;
+    }
+    
+    .dark .text-yellow-700 {
+      color: #fcd34d;
+    }
+    
+    .dark .text-green-700 {
+      color: #4ade80;
+    }
+    
+    .dark .shadow-lg,
+    .dark .shadow-md,
+    .dark .shadow-2xl {
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
   </style>
 </head>
 <body class="bg-blue-50 text-gray-900">
@@ -51,6 +132,16 @@
     </svg>
     <svg id="closeIcon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+    </svg>
+  </button>
+
+  <!-- Dark mode toggle button -->
+  <button id="themeToggle" class="fixed top-4 right-4 z-50 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 p-3 rounded-lg shadow-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-200">
+    <svg id="sunIcon" class="w-6 h-6 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+    </svg>
+    <svg id="moonIcon" class="w-6 h-6 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
     </svg>
   </button>
 
@@ -190,6 +281,22 @@
   </div>
 
   <script>
+    // Theme management
+    const themeToggle = document.getElementById('themeToggle');
+    const html = document.documentElement;
+    
+    // Check for saved theme preference or default to light mode
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    if (savedTheme === 'dark') {
+      html.classList.add('dark');
+    }
+    
+    themeToggle.addEventListener('click', () => {
+      html.classList.toggle('dark');
+      const currentTheme = html.classList.contains('dark') ? 'dark' : 'light';
+      localStorage.setItem('theme', currentTheme);
+    });
+
     // Sidebar toggle functionality for all devices
     const sidebarToggle = document.getElementById('sidebarToggle');
     const sidebar = document.getElementById('sidebar');
