@@ -1,1 +1,1 @@
-# oohoohohohohohohooooooooo
+# Ayurveda project website 
