@@ -16,112 +16,193 @@
     .bg-brown {
       background-color: #A0522D;
     }
+    .sidebar-toggle {
+      display: none;
+    }
+    @media (max-width: 768px) {
+      .sidebar-toggle {
+        display: block;
+      }
+      .sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-in-out;
+      }
+      .sidebar.open {
+        transform: translateX(0);
+      }
+    }
   </style>
 </head>
 <body class="bg-blue-50 text-gray-900">
 
-  <!-- Header -->
-  <header class="bg-green-700 text-white text-center py-20 shadow-2xl">
-    <h1 class="text-6xl font-extrabold">Ayurvedic Medicines & Remedies</h1>
-    <p class="mt-6 text-2xl italic">Ancient Science for Modern Wellness</p>
-  </header>
+  <!-- Mobile menu button -->
+  <button id="sidebarToggle" class="sidebar-toggle fixed top-4 left-4 z-50 bg-yellow-300 text-brown-900 p-2 rounded-lg shadow-lg md:hidden">
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+    </svg>
+  </button>
 
-  <!-- Navigation -->
-  <nav class="bg-yellow-300 text-brown-900 py-4 shadow-md text-center">
-    <a href="#what" class="mx-4 font-semibold hover:underline">What is Ayurveda?</a>
-    <a href="#principles" class="mx-4 font-semibold hover:underline">Core Principles</a>
-    <a href="#doshas" class="mx-4 font-semibold hover:underline">Types of Doshas</a>
-    <a href="#remedies" class="mx-4 font-semibold hover:underline">Remedies</a>
-    <a href="#history" class="mx-4 font-semibold hover:underline">History</a>
-    <a href="#global" class="mx-4 font-semibold hover:underline">Global Reach</a>
+  <!-- Sidebar Navigation -->
+  <nav id="sidebar" class="sidebar fixed left-0 top-0 h-full w-64 bg-yellow-300 text-brown-900 shadow-2xl z-40 overflow-y-auto">
+    <div class="p-6">
+      <h3 class="text-xl font-bold mb-6 text-center">Navigation</h3>
+      <ul class="space-y-4">
+        <li>
+          <a href="#what" class="block py-3 px-4 font-semibold hover:bg-yellow-400 rounded-lg transition-colors duration-200">
+            🌿 What is Ayurveda?
+          </a>
+        </li>
+        <li>
+          <a href="#principles" class="block py-3 px-4 font-semibold hover:bg-yellow-400 rounded-lg transition-colors duration-200">
+            📜 Core Principles
+          </a>
+        </li>
+        <li>
+          <a href="#doshas" class="block py-3 px-4 font-semibold hover:bg-yellow-400 rounded-lg transition-colors duration-200">
+            🔺 Types of Doshas
+          </a>
+        </li>
+        <li>
+          <a href="#remedies" class="block py-3 px-4 font-semibold hover:bg-yellow-400 rounded-lg transition-colors duration-200">
+            🌸 Remedies
+          </a>
+        </li>
+        <li>
+          <a href="#history" class="block py-3 px-4 font-semibold hover:bg-yellow-400 rounded-lg transition-colors duration-200">
+            📚 History
+          </a>
+        </li>
+        <li>
+          <a href="#global" class="block py-3 px-4 font-semibold hover:bg-yellow-400 rounded-lg transition-colors duration-200">
+            🌍 Global Reach
+          </a>
+        </li>
+      </ul>
+    </div>
   </nav>
 
-  <!-- Main Content -->
-  <main class="max-w-7xl mx-auto px-8 py-16 space-y-20">
+  <!-- Main content wrapper -->
+  <div class="md:ml-64">
+    <!-- Header -->
+    <header class="bg-green-700 text-white text-center py-20 shadow-2xl">
+      <h1 class="text-6xl font-extrabold">Ayurvedic Medicines & Remedies</h1>
+      <p class="mt-6 text-2xl italic">Ancient Science for Modern Wellness</p>
+    </header>
 
-    <!-- What is Ayurveda -->
-    <section id="what" class="bg-yellow-100 p-10 rounded-3xl shadow-lg border-l-8 border-yellow-600">
-      <h2 class="text-4xl font-bold text-yellow-800 mb-4">🌿 What is Ayurveda?</h2>
-      <p class="text-lg leading-relaxed">Ayurveda is an ancient system of natural healing that originated in India over 5,000 years ago. It focuses on achieving balance in the body through diet, lifestyle, and natural remedies. The word "Ayurveda" means "knowledge of life" in Sanskrit.</p>
-    </section>
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto px-8 py-16 space-y-20">
 
-    <!-- Core Principles -->
-    <section id="principles" class="bg-green-100 p-10 rounded-3xl shadow-lg border-l-8 border-green-600">
-      <h2 class="text-4xl font-bold text-green-900 mb-4">📜 Core Principles of Ayurveda</h2>
-      <ul class="list-disc list-inside space-y-2 text-lg">
-        <li>Balance of the five elements: earth, water, fire, air, and space</li>
-        <li>The concept of three doshas: Vata, Pitta, and Kapha</li>
-        <li>Use of herbs, minerals, and massage therapies</li>
-        <li>Daily routines (Dinacharya) and seasonal practices (Ritucharya)</li>
-      </ul>
-    </section>
+      <!-- What is Ayurveda -->
+      <section id="what" class="bg-yellow-100 p-10 rounded-3xl shadow-lg border-l-8 border-yellow-600">
+        <h2 class="text-4xl font-bold text-yellow-800 mb-4">🌿 What is Ayurveda?</h2>
+        <p class="text-lg leading-relaxed">Ayurveda is an ancient system of natural healing that originated in India over 5,000 years ago. It focuses on achieving balance in the body through diet, lifestyle, and natural remedies. The word "Ayurveda" means "knowledge of life" in Sanskrit.</p>
+      </section>
 
-    <!-- Doshas -->
-    <section id="doshas" class="bg-blue-100 p-10 rounded-3xl shadow-lg border-l-8 border-blue-600">
-      <h2 class="text-4xl font-bold text-blue-900 mb-4">🔺 Types of Doshas & Their Features</h2>
-      <div class="grid md:grid-cols-3 gap-8 text-lg">
-        <div class="bg-white p-6 rounded-xl shadow-md border-t-4 border-blue-300">
-          <h3 class="text-2xl font-bold text-blue-700 mb-2">Vata</h3>
-          <ul class="list-disc list-inside">
-            <li>Elements: Air & Space</li>
-            <li>Qualities: Light, dry, mobile, cold</li>
-            <li>Controls: Movement, breathing, circulation</li>
-          </ul>
+      <!-- Core Principles -->
+      <section id="principles" class="bg-green-100 p-10 rounded-3xl shadow-lg border-l-8 border-green-600">
+        <h2 class="text-4xl font-bold text-green-900 mb-4">📜 Core Principles of Ayurveda</h2>
+        <ul class="list-disc list-inside space-y-2 text-lg">
+          <li>Balance of the five elements: earth, water, fire, air, and space</li>
+          <li>The concept of three doshas: Vata, Pitta, and Kapha</li>
+          <li>Use of herbs, minerals, and massage therapies</li>
+          <li>Daily routines (Dinacharya) and seasonal practices (Ritucharya)</li>
+        </ul>
+      </section>
+
+      <!-- Doshas -->
+      <section id="doshas" class="bg-blue-100 p-10 rounded-3xl shadow-lg border-l-8 border-blue-600">
+        <h2 class="text-4xl font-bold text-blue-900 mb-4">🔺 Types of Doshas & Their Features</h2>
+        <div class="grid md:grid-cols-3 gap-8 text-lg">
+          <div class="bg-white p-6 rounded-xl shadow-md border-t-4 border-blue-300">
+            <h3 class="text-2xl font-bold text-blue-700 mb-2">Vata</h3>
+            <ul class="list-disc list-inside">
+              <li>Elements: Air & Space</li>
+              <li>Qualities: Light, dry, mobile, cold</li>
+              <li>Controls: Movement, breathing, circulation</li>
+            </ul>
+          </div>
+          <div class="bg-white p-6 rounded-xl shadow-md border-t-4 border-yellow-400">
+            <h3 class="text-2xl font-bold text-yellow-700 mb-2">Pitta</h3>
+            <ul class="list-disc list-inside">
+              <li>Elements: Fire & Water</li>
+              <li>Qualities: Hot, sharp, oily</li>
+              <li>Controls: Digestion, metabolism, energy</li>
+            </ul>
+          </div>
+          <div class="bg-white p-6 rounded-xl shadow-md border-t-4 border-green-400">
+            <h3 class="text-2xl font-bold text-green-700 mb-2">Kapha</h3>
+            <ul class="list-disc list-inside">
+              <li>Elements: Earth & Water</li>
+              <li>Qualities: Heavy, slow, steady, cold</li>
+              <li>Controls: Structure, immunity, lubrication</li>
+            </ul>
+          </div>
         </div>
-        <div class="bg-white p-6 rounded-xl shadow-md border-t-4 border-yellow-400">
-          <h3 class="text-2xl font-bold text-yellow-700 mb-2">Pitta</h3>
-          <ul class="list-disc list-inside">
-            <li>Elements: Fire & Water</li>
-            <li>Qualities: Hot, sharp, oily</li>
-            <li>Controls: Digestion, metabolism, energy</li>
-          </ul>
-        </div>
-        <div class="bg-white p-6 rounded-xl shadow-md border-t-4 border-green-400">
-          <h3 class="text-2xl font-bold text-green-700 mb-2">Kapha</h3>
-          <ul class="list-disc list-inside">
-            <li>Elements: Earth & Water</li>
-            <li>Qualities: Heavy, slow, steady, cold</li>
-            <li>Controls: Structure, immunity, lubrication</li>
-          </ul>
-        </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Remedies -->
-    <section id="remedies" class="bg-yellow-100 p-10 rounded-3xl shadow-lg border-l-8 border-yellow-600">
-      <h2 class="text-4xl font-bold text-yellow-800 mb-4">🌸 Ayurvedic Remedies</h2>
-      <ul class="list-disc list-inside space-y-2 text-lg">
-        <li><strong>Tulsi:</strong> Boosts immunity and respiratory health</li>
-        <li><strong>Triphala:</strong> Supports digestion and detoxification</li>
-        <li><strong>Turmeric:</strong> Anti-inflammatory and antioxidant</li>
-        <li><strong>Ashwagandha:</strong> Reduces stress and enhances stamina</li>
-      </ul>
-    </section>
+      <!-- Remedies -->
+      <section id="remedies" class="bg-yellow-100 p-10 rounded-3xl shadow-lg border-l-8 border-yellow-600">
+        <h2 class="text-4xl font-bold text-yellow-800 mb-4">🌸 Ayurvedic Remedies</h2>
+        <ul class="list-disc list-inside space-y-2 text-lg">
+          <li><strong>Tulsi:</strong> Boosts immunity and respiratory health</li>
+          <li><strong>Triphala:</strong> Supports digestion and detoxification</li>
+          <li><strong>Turmeric:</strong> Anti-inflammatory and antioxidant</li>
+          <li><strong>Ashwagandha:</strong> Reduces stress and enhances stamina</li>
+        </ul>
+      </section>
 
-    <!-- History -->
-    <section id="history" class="bg-brown text-white p-10 rounded-3xl shadow-lg border-l-8 border-yellow-500">
-      <h2 class="text-4xl font-bold mb-4">📚 History and Origin of Ayurveda</h2>
-      <p class="text-lg leading-relaxed">Ayurveda has its roots in the Vedic texts of ancient India. It was practiced and passed down by sages and healers. The knowledge was systematically compiled in texts like Charaka Samhita and Sushruta Samhita. Ayurveda emphasizes preventive care and holistic healing.</p>
-    </section>
+      <!-- History -->
+      <section id="history" class="bg-brown text-white p-10 rounded-3xl shadow-lg border-l-8 border-yellow-500">
+        <h2 class="text-4xl font-bold mb-4">📚 History and Origin of Ayurveda</h2>
+        <p class="text-lg leading-relaxed">Ayurveda has its roots in the Vedic texts of ancient India. It was practiced and passed down by sages and healers. The knowledge was systematically compiled in texts like Charaka Samhita and Sushruta Samhita. Ayurveda emphasizes preventive care and holistic healing.</p>
+      </section>
 
-    <!-- Global Reach -->
-    <section id="global" class="bg-green-100 p-10 rounded-3xl shadow-lg border-l-8 border-green-600">
-      <h2 class="text-4xl font-bold text-green-900 mb-4">🌍 Global Reach & Contributions</h2>
-      <ul class="list-disc list-inside space-y-2 text-lg">
-        <li>Accepted as a complementary system of medicine globally</li>
-        <li>Inspiration for wellness trends like yoga, detox, mindfulness</li>
-        <li>Contributed to herbal, organic, and sustainable living</li>
-        <li>Influenced modern integrative medicine practices</li>
-      </ul>
-    </section>
+      <!-- Global Reach -->
+      <section id="global" class="bg-green-100 p-10 rounded-3xl shadow-lg border-l-8 border-green-600">
+        <h2 class="text-4xl font-bold text-green-900 mb-4">🌍 Global Reach & Contributions</h2>
+        <ul class="list-disc list-inside space-y-2 text-lg">
+          <li>Accepted as a complementary system of medicine globally</li>
+          <li>Inspiration for wellness trends like yoga, detox, mindfulness</li>
+          <li>Contributed to herbal, organic, and sustainable living</li>
+          <li>Influenced modern integrative medicine practices</li>
+        </ul>
+      </section>
 
-  </main>
+    </main>
 
-  <!-- Footer -->
-  <footer class="bg-green-800 text-white text-center py-8 mt-16">
-    <p class="italic mt-2">"Nature holds the key to our well-being." 🌿</p>
-    <p class="text-xl">By Rishi, Aarav, Asad, Sachin and Ishan</p>
-  </footer>
+    <!-- Footer -->
+    <footer class="bg-green-800 text-white text-center py-8 mt-16">
+      <p class="italic mt-2">"Nature holds the key to our well-being." 🌿</p>
+      <p class="text-xl">By Rishi, Aarav, Asad, Sachin and Ishan</p>
+    </footer>
+  </div>
+
+  <script>
+    // Mobile sidebar toggle functionality
+    const sidebarToggle = document.getElementById('sidebarToggle');
+    const sidebar = document.getElementById('sidebar');
+
+    sidebarToggle.addEventListener('click', () => {
+      sidebar.classList.toggle('open');
+    });
+
+    // Close sidebar when clicking on main content on mobile
+    document.addEventListener('click', (e) => {
+      if (window.innerWidth <= 768 && !sidebar.contains(e.target) && !sidebarToggle.contains(e.target)) {
+        sidebar.classList.remove('open');
+      }
+    });
+
+    // Close sidebar when clicking on navigation links on mobile
+    const navLinks = sidebar.querySelectorAll('a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth <= 768) {
+          sidebar.classList.remove('open');
+        }
+      });
+    });
+  </script>
 
 </body>
 </html>
