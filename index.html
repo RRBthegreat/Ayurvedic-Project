@@ -1,6 +1,223 @@
-<li>
-          <a href="#survey" class="block py-3 px-4 font-semibold hover:bg-yellow-400 rounded-lg transition-colors duration-200">
-            📝 Dosha Assessment
+
+<html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ayurvedic Wisdom</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Quicksand', sans-serif;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    .bg-brown {
+      background-color: #A0522D;
+    }
+    .sidebar-toggle {
+      display: block;
+    }
+    @media (max-width: 768px) {
+      .sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-in-out;
+      }
+      .sidebar.open {
+        transform: translateX(0);
+      }
+    }
+    @media (min-width: 769px) {
+      .sidebar {
+        transition: transform 0.3s ease-in-out;
+      }
+      .sidebar.hidden {
+        transform: translateX(-100%);
+      }
+      .content-expanded {
+        margin-left: 0 !important;
+        transition: margin-left 0.3s ease-in-out;
+      }
+    }
+    
+    /* Dark theme styles */
+    .dark {
+      background-color: #1a1a1a;
+      color: #e5e5e5;
+    }
+    
+    .dark .bg-blue-50 {
+      background-color: #1a1a1a;
+    }
+    
+    .dark .bg-green-700 {
+      background-color: #166534;
+    }
+    
+    .dark .bg-yellow-300 {
+      background-color: #ca8a04;
+    }
+    
+    .dark .bg-yellow-100 {
+      background-color: #292524;
+      border-color: #ca8a04;
+    }
+    
+    .dark .bg-green-100 {
+      background-color: #1c2e1c;
+      border-color: #166534;
+    }
+    
+    .dark .bg-blue-100 {
+      background-color: #1e293b;
+      border-color: #1e40af;
+    }
+    
+    .dark .bg-white {
+      background-color: #374151;
+      color: #e5e5e5;
+    }
+    
+    .dark .bg-brown {
+      background-color: #7c2d12;
+    }
+    
+    .dark .bg-green-800 {
+      background-color: #14532d;
+    }
+    
+    .dark .text-gray-900 {
+      color: #e5e5e5;
+    }
+    
+    .dark .text-yellow-800 {
+      color: #fbbf24;
+    }
+    
+    .dark .text-green-900 {
+      color: #86efac;
+    }
+    
+    .dark .text-blue-900 {
+      color: #93c5fd;
+    }
+    
+    .dark .text-blue-700 {
+      color: #60a5fa;
+    }
+    
+    .dark .text-yellow-700 {
+      color: #fcd34d;
+    }
+    
+    .dark .text-green-700 {
+      color: #4ade80;
+    }
+    
+    .dark .shadow-lg,
+    .dark .shadow-md,
+    .dark .shadow-2xl {
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
+    
+    /* Parallax effect styles */
+    .parallax-section {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .parallax-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 120%;
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      z-index: -1;
+      transition: transform 0.1s ease-out;
+    }
+    
+    .parallax-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.9);
+      z-index: 0;
+    }
+    
+    .dark .parallax-overlay {
+      background: rgba(26, 26, 26, 0.9);
+    }
+    
+    .parallax-content {
+      position: relative;
+      z-index: 1;
+    }
+    
+    @media (max-width: 768px) {
+      .parallax-bg {
+        background-attachment: scroll;
+      }
+    }
+  </style>
+</head>
+<body class="bg-blue-50 text-gray-900">
+
+  <!-- Sidebar toggle button (visible on all devices) -->
+  <button id="sidebarToggle" class="fixed top-4 left-4 z-50 bg-yellow-300 text-brown-900 p-3 rounded-lg shadow-lg hover:bg-yellow-400 transition-colors duration-200">
+    <svg id="menuIcon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+    </svg>
+    <svg id="closeIcon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+    </svg>
+  </button>
+
+  <!-- Dark mode toggle button -->
+  <button id="themeToggle" class="fixed top-4 right-4 z-50 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 p-3 rounded-lg shadow-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-200">
+    <svg id="sunIcon" class="w-6 h-6 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+    </svg>
+    <svg id="moonIcon" class="w-6 h-6 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+    </svg>
+  </button>
+
+  <!-- Sidebar Navigation -->
+  <nav id="sidebar" class="sidebar fixed left-0 top-0 h-full w-64 bg-yellow-300 text-brown-900 shadow-2xl z-40 overflow-y-auto flex flex-col">
+    <div class="p-6 flex-1">
+      <h3 class="text-xl font-bold mb-6 text-center">Navigation</h3>
+      <ul class="space-y-4">
+        <li>
+          <a href="#what" class="block py-3 px-4 font-semibold hover:bg-yellow-400 rounded-lg transition-colors duration-200">
+            🌿 What is Ayurveda?
+          </a>
+        </li>
+        <li>
+          <a href="#principles" class="block py-3 px-4 font-semibold hover:bg-yellow-400 rounded-lg transition-colors duration-200">
+            📜 Core Principles
+          </a>
+        </li>
+        <li>
+          <a href="#doshas" class="block py-3 px-4 font-semibold hover:bg-yellow-400 rounded-lg transition-colors duration-200">
+            🔺 Types of Doshas
+          </a>
+        </li>
+        <li>
+          <a href="#remedies" class="block py-3 px-4 font-semibold hover:bg-yellow-400 rounded-lg transition-colors duration-200">
+            🌸 Remedies
+          </a>
+        </li>
+        <li>
+          <a href="#history" class="block py-3 px-4 font-semibold hover:bg-yellow-400 rounded-lg transition-colors duration-200">
+            📚 History
           </a>
         </li>
         <li>
@@ -8,3 +225,226 @@
             🌍 Global Reach
           </a>
         </li>
+      </ul>
+    </div>
+    
+    <!-- Image at the bottom of sidebar -->
+    <div class="p-4 border-t border-yellow-400 dark:border-yellow-600">
+      <img src="img.png" alt="Ayurvedic Wisdom" class="w-full h-auto rounded-lg shadow-md object-cover max-h-48">
+    </div>
+  </nav>
+
+  <!-- Main content wrapper -->
+  <div id="mainContent" class="md:ml-64 transition-all duration-300">
+    <!-- Header -->
+    <header class="bg-green-700 text-white text-center py-20 shadow-2xl">
+      <h1 class="text-6xl font-extrabold">Ayurvedic Medicines & Remedies</h1>
+      <p class="mt-6 text-2xl italic">Ancient Science for Modern Wellness</p>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto px-8 py-16 space-y-20">
+
+      <!-- What is Ayurveda -->
+      <section id="what" class="parallax-section bg-yellow-100 p-10 rounded-3xl shadow-lg border-l-8 border-yellow-600">
+        <div class="parallax-bg" style="background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');"></div>
+        <div class="parallax-overlay"></div>
+        <div class="parallax-content">
+          <h2 class="text-4xl font-bold text-yellow-800 mb-4">🌿 What is Ayurveda?</h2>
+          <p class="text-lg leading-relaxed">Ayurveda is an ancient system of natural healing that originated in India over 5,000 years ago. It focuses on achieving balance in the body through diet, lifestyle, and natural remedies. The word "Ayurveda" means "knowledge of life" in Sanskrit.</p>
+        </div>
+      </section>
+
+      <!-- Core Principles -->
+      <section id="principles" class="parallax-section bg-green-100 p-10 rounded-3xl shadow-lg border-l-8 border-green-600">
+        <div class="parallax-bg" style="background-image: url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');"></div>
+        <div class="parallax-overlay"></div>
+        <div class="parallax-content">
+          <h2 class="text-4xl font-bold text-green-900 mb-4">📜 Core Principles of Ayurveda</h2>
+          <ul class="list-disc list-inside space-y-2 text-lg">
+            <li>Balance of the five elements: earth, water, fire, air, and space</li>
+            <li>The concept of three doshas: Vata, Pitta, and Kapha</li>
+            <li>Use of herbs, minerals, and massage therapies</li>
+            <li>Daily routines (Dinacharya) and seasonal practices (Ritucharya)</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Doshas -->
+      <section id="doshas" class="parallax-section bg-blue-100 p-10 rounded-3xl shadow-lg border-l-8 border-blue-600">
+        <div class="parallax-bg" style="background-image: url('https://images.unsplash.com/photo-1515377905703-c4788e51af15?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');"></div>
+        <div class="parallax-overlay"></div>
+        <div class="parallax-content">
+          <h2 class="text-4xl font-bold text-blue-900 mb-4">🔺 Types of Doshas & Their Features</h2>
+          <div class="grid md:grid-cols-3 gap-8 text-lg">
+            <div class="bg-white p-6 rounded-xl shadow-md border-t-4 border-blue-300">
+              <h3 class="text-2xl font-bold text-blue-700 mb-2">Vata</h3>
+              <ul class="list-disc list-inside">
+                <li>Elements: Air & Space</li>
+                <li>Qualities: Light, dry, mobile, cold</li>
+                <li>Controls: Movement, breathing, circulation</li>
+              </ul>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-md border-t-4 border-yellow-400">
+              <h3 class="text-2xl font-bold text-yellow-700 mb-2">Pitta</h3>
+              <ul class="list-disc list-inside">
+                <li>Elements: Fire & Water</li>
+                <li>Qualities: Hot, sharp, oily</li>
+                <li>Controls: Digestion, metabolism, energy</li>
+              </ul>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-md border-t-4 border-green-400">
+              <h3 class="text-2xl font-bold text-green-700 mb-2">Kapha</h3>
+              <ul class="list-disc list-inside">
+                <li>Elements: Earth & Water</li>
+                <li>Qualities: Heavy, slow, steady, cold</li>
+                <li>Controls: Structure, immunity, lubrication</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Remedies -->
+      <section id="remedies" class="parallax-section bg-yellow-100 p-10 rounded-3xl shadow-lg border-l-8 border-yellow-600">
+        <div class="parallax-bg" style="background-image: url('https://images.unsplash.com/photo-1596040065781-1beef275121e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');"></div>
+        <div class="parallax-overlay"></div>
+        <div class="parallax-content">
+          <h2 class="text-4xl font-bold text-yellow-800 mb-4">🌸 Ayurvedic Remedies</h2>
+          <ul class="list-disc list-inside space-y-2 text-lg">
+            <li><strong>Tulsi:</strong> Boosts immunity and respiratory health</li>
+            <li><strong>Triphala:</strong> Supports digestion and detoxification</li>
+            <li><strong>Turmeric:</strong> Anti-inflammatory and antioxidant</li>
+            <li><strong>Ashwagandha:</strong> Reduces stress and enhances stamina</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- History -->
+      <section id="history" class="parallax-section bg-brown text-white p-10 rounded-3xl shadow-lg border-l-8 border-yellow-500">
+        <div class="parallax-bg" style="background-image: url('https://images.unsplash.com/photo-1604147706283-d7119b5b822c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');"></div>
+        <div class="parallax-overlay"></div>
+        <div class="parallax-content">
+          <h2 class="text-4xl font-bold mb-4">📚 History and Origin of Ayurveda</h2>
+          <p class="text-lg leading-relaxed">Ayurveda has its roots in the Vedic texts of ancient India. It was practiced and passed down by sages and healers. The knowledge was systematically compiled in texts like Charaka Samhita and Sushruta Samhita. Ayurveda emphasizes preventive care and holistic healing.</p>
+        </div>
+      </section>
+
+      <!-- Global Reach -->
+      <section id="global" class="parallax-section bg-green-100 p-10 rounded-3xl shadow-lg border-l-8 border-green-600">
+        <div class="parallax-bg" style="background-image: url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');"></div>
+        <div class="parallax-overlay"></div>
+        <div class="parallax-content">
+          <h2 class="text-4xl font-bold text-green-900 mb-4">🌍 Global Reach & Contributions</h2>
+          <ul class="list-disc list-inside space-y-2 text-lg">
+            <li>Accepted as a complementary system of medicine globally</li>
+            <li>Inspiration for wellness trends like yoga, detox, mindfulness</li>
+            <li>Contributed to herbal, organic, and sustainable living</li>
+            <li>Influenced modern integrative medicine practices</li>
+          </ul>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-green-800 text-white text-center py-8 mt-16">
+      <p class="italic mt-2">"Nature holds the key to our well-being." 🌿</p>
+      <p class="text-xl">By Rishi, Aarav, Asad, Sachin and Ishan</p>
+    </footer>
+  </div>
+
+  <script>
+    // Theme management
+    const themeToggle = document.getElementById('themeToggle');
+    const html = document.documentElement;
+    
+    // Check for saved theme preference or default to light mode
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    if (savedTheme === 'dark') {
+      html.classList.add('dark');
+    }
+    
+    themeToggle.addEventListener('click', () => {
+      html.classList.toggle('dark');
+      const currentTheme = html.classList.contains('dark') ? 'dark' : 'light';
+      localStorage.setItem('theme', currentTheme);
+    });
+
+    // Sidebar toggle functionality for all devices
+    const sidebarToggle = document.getElementById('sidebarToggle');
+    const sidebar = document.getElementById('sidebar');
+    const mainContent = document.getElementById('mainContent');
+    const menuIcon = document.getElementById('menuIcon');
+    const closeIcon = document.getElementById('closeIcon');
+    
+    let sidebarVisible = true;
+
+    sidebarToggle.addEventListener('click', () => {
+      if (window.innerWidth <= 768) {
+        // Mobile behavior
+        sidebar.classList.toggle('open');
+        toggleIcons();
+      } else {
+        // Desktop behavior
+        sidebarVisible = !sidebarVisible;
+        if (sidebarVisible) {
+          sidebar.classList.remove('hidden');
+          mainContent.classList.remove('content-expanded');
+        } else {
+          sidebar.classList.add('hidden');
+          mainContent.classList.add('content-expanded');
+        }
+        toggleIcons();
+      }
+    });
+
+    function toggleIcons() {
+      if ((window.innerWidth <= 768 && sidebar.classList.contains('open')) || 
+          (window.innerWidth > 768 && sidebarVisible)) {
+        menuIcon.classList.add('hidden');
+        closeIcon.classList.remove('hidden');
+      } else {
+        menuIcon.classList.remove('hidden');
+        closeIcon.classList.add('hidden');
+      }
+    }
+
+    // Close sidebar when clicking on main content on mobile
+    document.addEventListener('click', (e) => {
+      if (window.innerWidth <= 768 && !sidebar.contains(e.target) && !sidebarToggle.contains(e.target)) {
+        sidebar.classList.remove('open');
+        toggleIcons();
+      }
+    });
+
+    // Close sidebar when clicking on navigation links on mobile
+    const navLinks = sidebar.querySelectorAll('a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth <= 768) {
+          sidebar.classList.remove('open');
+          toggleIcons();
+        }
+      });
+    });
+
+    // Handle window resize to reset states
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768) {
+        sidebar.classList.remove('open');
+        if (sidebarVisible) {
+          sidebar.classList.remove('hidden');
+          mainContent.classList.remove('content-expanded');
+        }
+      } else {
+        sidebar.classList.remove('hidden');
+        mainContent.classList.remove('content-expanded');
+        sidebarVisible = true;
+      }
+      toggleIcons();
+    });
+  </script>
+
+</body>
+</html>
