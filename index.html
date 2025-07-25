@@ -173,10 +173,17 @@
       z-index: 1;
     }
     
-    @media (max-width: 768px) {
-      .parallax-bg {
-        background-attachment: scroll;
-      }
+    .survey-option {
+      transition: all 0.2s ease;
+    }
+    
+    .survey-option:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
+    
+    .dark .survey-option:hover {
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     }
   </style>
 </head>
@@ -594,7 +601,7 @@
           <h4 class="text-lg font-semibold mb-3 text-purple-800 dark:text-purple-300">${index + 1}. ${q.question}</h4>
           <div class="space-y-2">
             ${q.options.map((option, optIndex) => `
-              <label class="flex items-center space-x-2 cursor-pointer hover:shadow-lg hover:-translate-y-1 p-2 rounded-lg transition-all duration-200 transform">
+              <label class="survey-option flex items-center space-x-2 cursor-pointer p-2 rounded-lg">
                 <input type="radio" name="question-${index}" value="${option.dosha}" class="form-radio text-purple-600">
                 <span class="text-white dark:text-white text-sm">${option.text}</span>
               </label>
