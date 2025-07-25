@@ -75,6 +75,19 @@
       border-color: #1e40af;
     }
     
+    .dark .bg-purple-100 {
+      background-color: #2d1b69;
+      border-color: #7c3aed;
+    }
+    
+    .dark .text-purple-900 {
+      color: #c4b5fd;
+    }
+    
+    .dark .text-purple-800 {
+      color: #ddd6fe;
+    }
+    
     .dark .bg-white {
       background-color: #374151;
       color: #e5e5e5;
@@ -215,6 +228,11 @@
           </a>
         </li>
         <li>
+          <a href="#survey" class="block py-3 px-4 font-semibold hover:bg-yellow-400 rounded-lg transition-colors duration-200">
+            📝 Dosha Assessment
+          </a>
+        </li>
+        <li>
           <a href="#history" class="block py-3 px-4 font-semibold hover:bg-yellow-400 rounded-lg transition-colors duration-200">
             📚 History
           </a>
@@ -316,6 +334,38 @@
             <li><strong>Turmeric:</strong> Anti-inflammatory and antioxidant</li>
             <li><strong>Ashwagandha:</strong> Reduces stress and enhances stamina</li>
           </ul>
+        </div>
+      </section>
+
+      <!-- Dosha Assessment Survey -->
+      <section id="survey" class="parallax-section bg-purple-100 p-10 rounded-3xl shadow-lg border-l-8 border-purple-600">
+        <div class="parallax-bg" style="background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');"></div>
+        <div class="parallax-overlay"></div>
+        <div class="parallax-content">
+          <h2 class="text-4xl font-bold text-purple-900 mb-6">📝 Discover Your Dosha Type</h2>
+          <p class="text-lg mb-8 text-purple-800">Answer these questions to determine your dominant dosha constitution. Choose the option that best describes you most of the time.</p>
+          
+          <div id="survey-container" class="space-y-6">
+            <!-- Survey questions will be populated by JavaScript -->
+          </div>
+          
+          <div class="mt-8 text-center">
+            <button id="calculate-dosha" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-8 rounded-lg shadow-lg transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+              Calculate My Dosha
+            </button>
+          </div>
+          
+          <div id="result-container" class="mt-8 hidden">
+            <div class="bg-white dark:bg-gray-700 p-8 rounded-xl shadow-lg border-2">
+              <h3 class="text-3xl font-bold mb-4 text-center">Your Dosha Result</h3>
+              <div id="dosha-result" class="text-center">
+                <!-- Result will be displayed here -->
+              </div>
+              <button id="retake-survey" class="mt-6 bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-6 rounded-lg transition-colors duration-200 mx-auto block">
+                Retake Assessment
+              </button>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -442,6 +492,262 @@
         sidebarVisible = true;
       }
       toggleIcons();
+    });
+
+    // Dosha Assessment Survey
+    const surveyQuestions = [
+      {
+        question: "What is your body frame?",
+        options: [
+          { text: "Thin, light, difficulty gaining weight", dosha: "vata" },
+          { text: "Medium build, muscular, moderate weight", dosha: "pitta" },
+          { text: "Large frame, heavy, gain weight easily", dosha: "kapha" }
+        ]
+      },
+      {
+        question: "How is your skin?",
+        options: [
+          { text: "Dry, rough, thin, cool to touch", dosha: "vata" },
+          { text: "Warm, oily, prone to irritation/rashes", dosha: "pitta" },
+          { text: "Thick, moist, cool, smooth", dosha: "kapha" }
+        ]
+      },
+      {
+        question: "What describes your hair?",
+        options: [
+          { text: "Dry, brittle, thin", dosha: "vata" },
+          { text: "Fine, oily, early graying/balding", dosha: "pitta" },
+          { text: "Thick, oily, wavy, lustrous", dosha: "kapha" }
+        ]
+      },
+      {
+        question: "How is your appetite?",
+        options: [
+          { text: "Variable, sometimes forget to eat", dosha: "vata" },
+          { text: "Strong, regular, get irritable when hungry", dosha: "pitta" },
+          { text: "Low but steady, can skip meals easily", dosha: "kapha" }
+        ]
+      },
+      {
+        question: "What is your energy level like?",
+        options: [
+          { text: "Comes in bursts, tire easily", dosha: "vata" },
+          { text: "Moderate to high, intense when active", dosha: "pitta" },
+          { text: "Steady, good endurance, slow to start", dosha: "kapha" }
+        ]
+      },
+      {
+        question: "How do you handle stress?",
+        options: [
+          { text: "Become anxious, worried, overwhelmed", dosha: "vata" },
+          { text: "Become irritable, angry, frustrated", dosha: "pitta" },
+          { text: "Remain calm, become withdrawn or depressed", dosha: "kapha" }
+        ]
+      },
+      {
+        question: "What is your sleep pattern?",
+        options: [
+          { text: "Light sleeper, restless, wake up easily", dosha: "vata" },
+          { text: "Moderate sleep, wake up refreshed", dosha: "pitta" },
+          { text: "Deep sleeper, need lots of sleep, hard to wake up", dosha: "kapha" }
+        ]
+      },
+      {
+        question: "How do you learn new things?",
+        options: [
+          { text: "Learn quickly but forget easily", dosha: "vata" },
+          { text: "Learn at moderate pace with good retention", dosha: "pitta" },
+          { text: "Learn slowly but remember for long time", dosha: "kapha" }
+        ]
+      },
+      {
+        question: "What describes your personality?",
+        options: [
+          { text: "Creative, enthusiastic, changeable", dosha: "vata" },
+          { text: "Ambitious, focused, competitive", dosha: "pitta" },
+          { text: "Calm, steady, nurturing", dosha: "kapha" }
+        ]
+      },
+      {
+        question: "How do you prefer the weather?",
+        options: [
+          { text: "Prefer warm, humid weather", dosha: "vata" },
+          { text: "Prefer cool, well-ventilated places", dosha: "pitta" },
+          { text: "Prefer warm, dry weather", dosha: "kapha" }
+        ]
+      }
+    ];
+
+    let currentAnswers = [];
+
+    function initializeSurvey() {
+      const container = document.getElementById('survey-container');
+      const calculateBtn = document.getElementById('calculate-dosha');
+      
+      container.innerHTML = '';
+      currentAnswers = [];
+      
+      surveyQuestions.forEach((q, index) => {
+        const questionDiv = document.createElement('div');
+        questionDiv.className = 'bg-white dark:bg-gray-700 p-6 rounded-xl shadow-md';
+        questionDiv.innerHTML = `
+          <h4 class="text-xl font-semibold mb-4 text-purple-800 dark:text-purple-300">${index + 1}. ${q.question}</h4>
+          <div class="space-y-3">
+            ${q.options.map((option, optIndex) => `
+              <label class="flex items-center space-x-3 cursor-pointer hover:bg-purple-50 dark:hover:bg-gray-600 p-2 rounded-lg transition-colors">
+                <input type="radio" name="question-${index}" value="${option.dosha}" class="form-radio text-purple-600">
+                <span class="text-gray-700 dark:text-gray-300">${option.text}</span>
+              </label>
+            `).join('')}
+          </div>
+        `;
+        container.appendChild(questionDiv);
+      });
+      
+      // Add event listeners to radio buttons
+      const radioButtons = container.querySelectorAll('input[type="radio"]');
+      radioButtons.forEach(radio => {
+        radio.addEventListener('change', checkSurveyCompletion);
+      });
+      
+      calculateBtn.disabled = true;
+    }
+
+    function checkSurveyCompletion() {
+      const totalQuestions = surveyQuestions.length;
+      const answeredQuestions = new Set();
+      
+      document.querySelectorAll('input[type="radio"]:checked').forEach(radio => {
+        const questionIndex = radio.name.split('-')[1];
+        answeredQuestions.add(questionIndex);
+      });
+      
+      const calculateBtn = document.getElementById('calculate-dosha');
+      calculateBtn.disabled = answeredQuestions.size !== totalQuestions;
+    }
+
+    function calculateDosha() {
+      const scores = { vata: 0, pitta: 0, kapha: 0 };
+      
+      document.querySelectorAll('input[type="radio"]:checked').forEach(radio => {
+        scores[radio.value]++;
+      });
+      
+      // Find dominant dosha
+      let dominantDosha = 'vata';
+      let maxScore = scores.vata;
+      
+      if (scores.pitta > maxScore) {
+        dominantDosha = 'pitta';
+        maxScore = scores.pitta;
+      }
+      if (scores.kapha > maxScore) {
+        dominantDosha = 'kapha';
+        maxScore = scores.kapha;
+      }
+      
+      return { dominant: dominantDosha, scores: scores };
+    }
+
+    function displayResult(result) {
+      const resultContainer = document.getElementById('result-container');
+      const doshaResult = document.getElementById('dosha-result');
+      
+      const doshaInfo = {
+        vata: {
+          name: 'Vata',
+          color: 'text-blue-600',
+          bgColor: 'bg-blue-100',
+          icon: '💨',
+          description: 'You are creative, energetic, and adaptable. Focus on warm, grounding foods and regular routines.',
+          recommendations: [
+            'Eat warm, cooked foods',
+            'Maintain regular meal times',
+            'Practice calming activities like yoga',
+            'Get adequate rest and sleep',
+            'Avoid cold, raw foods'
+          ]
+        },
+        pitta: {
+          name: 'Pitta',
+          color: 'text-red-600',
+          bgColor: 'bg-red-100',
+          icon: '🔥',
+          description: 'You are ambitious, focused, and intelligent. Focus on cooling foods and stress management.',
+          recommendations: [
+            'Eat cooling, fresh foods',
+            'Avoid spicy and acidic foods',
+            'Practice meditation to manage stress',
+            'Stay cool in hot weather',
+            'Maintain work-life balance'
+          ]
+        },
+        kapha: {
+          name: 'Kapha',
+          color: 'text-green-600',
+          bgColor: 'bg-green-100',
+          icon: '🌱',
+          description: 'You are calm, stable, and nurturing. Focus on light, stimulating foods and regular exercise.',
+          recommendations: [
+            'Eat light, warm, spicy foods',
+            'Exercise regularly to boost metabolism',
+            'Avoid heavy, oily foods',
+            'Stay active and avoid oversleeping',
+            'Incorporate variety in daily routine'
+          ]
+        }
+      };
+      
+      const info = doshaInfo[result.dominant];
+      
+      doshaResult.innerHTML = `
+        <div class="text-center mb-6">
+          <div class="text-6xl mb-4">${info.icon}</div>
+          <h4 class="text-4xl font-bold ${info.color} mb-2">Your Dominant Dosha: ${info.name}</h4>
+          <p class="text-lg text-gray-600 dark:text-gray-300 mb-4">${info.description}</p>
+        </div>
+        
+        <div class="grid md:grid-cols-3 gap-4 mb-6">
+          <div class="text-center p-4 bg-blue-50 dark:bg-blue-900 rounded-lg">
+            <div class="text-2xl font-bold text-blue-600">Vata</div>
+            <div class="text-xl">${result.scores.vata}/10</div>
+          </div>
+          <div class="text-center p-4 bg-red-50 dark:bg-red-900 rounded-lg">
+            <div class="text-2xl font-bold text-red-600">Pitta</div>
+            <div class="text-xl">${result.scores.pitta}/10</div>
+          </div>
+          <div class="text-center p-4 bg-green-50 dark:bg-green-900 rounded-lg">
+            <div class="text-2xl font-bold text-green-600">Kapha</div>
+            <div class="text-xl">${result.scores.kapha}/10</div>
+          </div>
+        </div>
+        
+        <div class="${info.bgColor} dark:bg-gray-600 p-6 rounded-lg">
+          <h5 class="text-xl font-bold ${info.color} mb-3">Recommendations for ${info.name} Types:</h5>
+          <ul class="list-disc list-inside space-y-2">
+            ${info.recommendations.map(rec => `<li class="text-gray-700 dark:text-gray-300">${rec}</li>`).join('')}
+          </ul>
+        </div>
+      `;
+      
+      resultContainer.classList.remove('hidden');
+      resultContainer.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Initialize survey on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      initializeSurvey();
+      
+      document.getElementById('calculate-dosha').addEventListener('click', () => {
+        const result = calculateDosha();
+        displayResult(result);
+      });
+      
+      document.getElementById('retake-survey').addEventListener('click', () => {
+        document.getElementById('result-container').classList.add('hidden');
+        initializeSurvey();
+        document.getElementById('survey').scrollIntoView({ behavior: 'smooth' });
+      });
     });
   </script>
 
