@@ -1,4 +1,56 @@
-<html>
+<!-- Main Content -->
+    <main class="max-w-6xl mx-auto px-8 py-16 space-y-20">
+
+      <!-- What is Ayurveda -->
+      <section id="what" class="parallax-section bg-yellow-100 p-10 rounded-3xl shadow-lg border-l-8 border-yellow-600">
+        <div class="parallax-bg" style="background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');"></div>
+        <div class="parallax-overlay"></div>
+        <div class="parallax-content">
+          <h2 class="text-4xl font-bold text-yellow-800 mb-4">🌿 What is Ayurveda?</h2>
+          <p class="text-lg leading-relaxed">Ayurveda is an ancient system of natural healing that originated in India over 5,000 years ago. It focuses on achieving balance in the body through diet, lifestyle, and natural remedies. The word "Ayurveda" means "knowledge of life" in Sanskrit.</p>
+        </div>
+      </section>
+
+      <!-- Core Principles -->
+      <section id="principles" class="parallax-section bg-green-100 p-10 rounded-3xl shadow-lg border-l-8 border-green-600">
+        <div class="parallax-bg" style="background-image: url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');"></div>
+        <div class="parallax-overlay"></div>
+        <div class="parallax-content">
+          <h2 class="text-4xl font-bold text-green-900 mb-4">📜 Core Principles of Ayurveda</h2>
+          <ul class="list-disc list-inside space-y-2 text-lg">
+            <li>Balance of the five elements: earth, water, fire, air, and space</li>
+            <li>The concept of three doshas: Vata, Pitta, and Kapha</li>
+            <li>Use of herbs, minerals, and massage therapies</li>
+            <li>Daily routines (Dinacharya) and seasonal practices (Ritucharya)</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Doshas -->
+      <section id="doshas" class="parallax-section bg-blue-100 p-10 rounded-3xl shadow-lg border-l-8 border-blue-600">
+        <div class="parallax-bg" style="background-image: url('https://images.unsplash.com/photo-1515377905703-c4788e51af15?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');"></div>
+        <div class="parallax-overlay"></div>
+        <div class="parallax-content">
+          <h2 class="text-4xl font-bold text-blue-900 mb-4">🔺 Types of Doshas & Their Features</h2>
+          <div class="grid md:grid-cols-3 gap-8 text-lg">
+            <div class="bg-white p-6 rounded-xl shadow-md border-t-4 border-blue-300">
+              <h3 class="text-2xl font-bold text-blue-700 mb-2">Vata</h3>
+              <ul class="list-disc list-inside">
+                <li>Elements: Air & Space</li>
+                <li>Qualities: Light, dry, mobile, cold</li>
+                <li>Controls: Movement, breathing, circulation</li>
+              </ul>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-md border-t-4 border-yellow-400">
+              <h3 class="text-2xl font-bold text-yellow-700 mb-2">Pitta</h3>
+              <ul class="list-disc list-inside">
+                <li>Elements: Fire & Water</li>
+                <li>Qualities: Hot, sharp, oily</li>
+                <li>Controls: Digestion, metabolism, energy</li>
+              </ul>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-md border-t-4 border-green-400">
+      <html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -120,6 +172,50 @@
     .dark .shadow-md,
     .dark .shadow-2xl {
       box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
+    
+    /* Parallax effect styles */
+    .parallax-section {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .parallax-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 120%;
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      z-index: -1;
+      transition: transform 0.1s ease-out;
+    }
+    
+    .parallax-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.9);
+      z-index: 0;
+    }
+    
+    .dark .parallax-overlay {
+      background: rgba(26, 26, 26, 0.9);
+    }
+    
+    .parallax-content {
+      position: relative;
+      z-index: 1;
+    }
+    
+    @media (max-width: 768px) {
+      .parallax-bg {
+        background-attachment: scroll;
+      }
     }
   </style>
 </head>
