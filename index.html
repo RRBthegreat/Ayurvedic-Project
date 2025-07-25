@@ -589,14 +589,14 @@
       
       surveyQuestions.forEach((q, index) => {
         const questionDiv = document.createElement('div');
-        questionDiv.className = 'bg-white dark:bg-gray-700 p-6 rounded-xl shadow-md';
+        questionDiv.className = 'bg-white dark:bg-gray-700 p-4 rounded-xl shadow-md max-w-3xl mx-auto';
         questionDiv.innerHTML = `
-          <h4 class="text-xl font-semibold mb-4 text-purple-800 dark:text-purple-300">${index + 1}. ${q.question}</h4>
-          <div class="space-y-3">
+          <h4 class="text-lg font-semibold mb-3 text-purple-800 dark:text-purple-300">${index + 1}. ${q.question}</h4>
+          <div class="space-y-2">
             ${q.options.map((option, optIndex) => `
-              <label class="flex items-center space-x-3 cursor-pointer hover:bg-purple-50 dark:hover:bg-gray-600 p-2 rounded-lg transition-colors">
+              <label class="flex items-center space-x-2 cursor-pointer hover:bg-purple-50 dark:hover:bg-gray-600 p-2 rounded-lg transition-colors">
                 <input type="radio" name="question-${index}" value="${option.dosha}" class="form-radio text-purple-600">
-                <span class="text-gray-700 dark:text-gray-300">${option.text}</span>
+                <span class="text-white dark:text-white text-sm">${option.text}</span>
               </label>
             `).join('')}
           </div>
